@@ -1,5 +1,4 @@
-
-
+module github.com/ani5msr/microservices-project
 go 1.17
 
 require (
