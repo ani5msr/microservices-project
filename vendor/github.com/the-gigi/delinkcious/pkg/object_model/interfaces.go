@@ -1,10 +1,10 @@
 package object_model
 
-type ThoughtManager interface {
-	GetThought(request GetLinksRequest) (GetLinksResult, error)
-	AddThought(request AddLinkRequest) error
-	UpdateThought(request UpdateLinkRequest) error
-	DeleteThought(username string, url string) error
+type LinkManager interface {
+	GetLinks(request GetLinksRequest) (GetLinksResult, error)
+	AddLink(request AddLinkRequest) error
+	UpdateLink(request UpdateLinkRequest) error
+	DeleteLink(username string, url string) error
 }
 
 type UserManager interface {
@@ -29,12 +29,12 @@ type NewsManager interface {
 	GetNews(request GetNewsRequest) (GetNewsResult, error)
 }
 
-type ThoughtManagerEvents interface {
-	OnThoughtAdded(username string, link *Link)
-	OnThoughtUpdated(username string, link *Link)
-	OnThoughtDeleted(username string, url string)
+type LinkManagerEvents interface {
+	OnLinkAdded(username string, link *Link)
+	OnLinkUpdated(username string, link *Link)
+	OnLinkDeleted(username string, url string)
 }
 
-type ThoughtCheckerEvents interface {
-	OnThoughtChecked(username string, url string, status LinkStatus)
+type LinkCheckerEvents interface {
+	OnLinkChecked(username string, url string, status LinkStatus)
 }

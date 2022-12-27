@@ -1,4 +1,4 @@
-package db_util
+package db_utils
 
 import (
 	"database/sql"
