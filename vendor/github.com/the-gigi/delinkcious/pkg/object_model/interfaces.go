@@ -1,10 +1,10 @@
 package object_model
 
-type LinkManager interface {
-	GetLinks(request GetLinksRequest) (GetLinksResult, error)
-	AddLink(request AddLinkRequest) error
-	UpdateLink(request UpdateLinkRequest) error
-	DeleteLink(username string, url string) error
+type PostManager interface {
+	GetPosts(request GetPostsRequest) (GetPostsResult, error)
+	AddPost(request AddPostRequest) error
+	UpdatePost(request UpdatePostRequest) error
+	DeletePost(username string, url string) error
 }
 
 type UserManager interface {
@@ -29,12 +29,12 @@ type NewsManager interface {
 	GetNews(request GetNewsRequest) (GetNewsResult, error)
 }
 
-type LinkManagerEvents interface {
-	OnLinkAdded(username string, link *Link)
-	OnLinkUpdated(username string, link *Link)
-	OnLinkDeleted(username string, url string)
+type PostManagerEvents interface {
+	OnPostAdded(username string, Post *Post)
+	OnPostUpdated(username string, Post *Post)
+	OnPostDeleted(username string, url string)
 }
 
-type LinkCheckerEvents interface {
-	OnLinkChecked(username string, url string, status LinkStatus)
+type PostCheckerEvents interface {
+	OnPostChecked(username string, url string, status PostStatus)
 }

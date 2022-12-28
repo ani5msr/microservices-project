@@ -7,7 +7,7 @@ require (
 	github.com/go-kit/kit v0.12.0
 	github.com/gorilla/mux v1.8.0
 	github.com/lib/pq v1.10.7
-	github.com/the-gigi/delinkcious v0.0.0-20220103100106-8f9203288534
+	github.com/the-gigi/dePostcious v0.0.0-20220103100106-8f9203288534
 	gopkg.in/yaml.v2 v2.4.0
 )
 

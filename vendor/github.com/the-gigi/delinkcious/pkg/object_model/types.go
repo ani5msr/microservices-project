@@ -2,33 +2,33 @@ package object_model
 
 import "time"
 
-type LinkManagerEventTypeEnum int
+type PostManagerEventTypeEnum int
 
 const (
-	LinkAdded LinkManagerEventTypeEnum = iota
-	LinkUpdated
-	LinkDeleted
+	PostAdded PostManagerEventTypeEnum = iota
+	PostUpdated
+	PostDeleted
 )
 
 const (
-	LinkStatusPending = "pending"
-	LinkStatusValid   = "valid"
-	LinkStatusInvalid = "invalid"
+	PostStatusPending = "pending"
+	PostStatusValid   = "valid"
+	PostStatusInvalid = "invalid"
 )
 
-type LinkStatus = string
+type PostStatus = string
 
-type Link struct {
+type Post struct {
 	Url         string
 	Title       string
 	Description string
-	Status      LinkStatus
+	Status      PostStatus
 	Tags        map[string]bool
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 }
 
-type GetLinksRequest struct {
+type GetPostsRequest struct {
 	UrlRegex         string
 	TitleRegex       string
 	DescriptionRegex string
@@ -37,12 +37,12 @@ type GetLinksRequest struct {
 	StartToken       string
 }
 
-type GetLinksResult struct {
-	Links         []Link
+type GetPostsResult struct {
+	Posts         []Post
 	NextPageToken string
 }
 
-type AddLinkRequest struct {
+type AddPostRequest struct {
 	Url         string
 	Title       string
 	Description string
@@ -50,7 +50,7 @@ type AddLinkRequest struct {
 	Tags        map[string]bool
 }
 
-type UpdateLinkRequest struct {
+type UpdatePostRequest struct {
 	Url         string
 	Title       string
 	Description string
@@ -64,8 +64,8 @@ type User struct {
 	Name  string
 }
 
-type LinkManagerEvent struct {
-	EventType LinkManagerEventTypeEnum
+type PostManagerEvent struct {
+	EventType PostManagerEventTypeEnum
 	Username  string
 	Url       string
 	Timestamp time.Time
@@ -77,11 +77,11 @@ type GetNewsRequest struct {
 }
 
 type GetNewsResult struct {
-	Events    []*LinkManagerEvent
+	Events    []*PostManagerEvent
 	NextToken string
 }
 
-type CheckLinkRequest struct {
+type CheckPostRequest struct {
 	Username string
 	Url      string
 }

@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/ani5msr/microservices-project/pkg/db_utils"
 	sgm "github.com/ani5msr/microservices-project/pkg/social_graph_manager"
 	httptransport "github.com/go-kit/kit/transport/http"
 	"github.com/gorilla/mux"
-	"github.com/the-gigi/delinkcious/pkg/db_util"
 )
 
 func check(err error) {
@@ -19,7 +19,7 @@ func check(err error) {
 
 func Run() {
 	log.Println("Service started...")
-	dbHost, dbPort, err := db_util.GetDbEndpoint("social_graph")
+	dbHost, dbPort, err := db_utils.GetDbEndpoint("social_graph")
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -4,13 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"github.com/go-kit/kit/endpoint"
-	"github.com/the-gigi/delinkcious/pkg/auth_util"
-	om "github.com/the-gigi/delinkcious/pkg/object_model"
 	"net/http"
 	"net/url"
 	"os"
 	"strings"
+
+	"github.com/ani5msr/microservices-project/pkg/auth_util"
+	om "github.com/ani5msr/microservices-project/pkg/object_model"
+	"github.com/go-kit/kit/endpoint"
 )
 
 type followRequest struct {
@@ -78,13 +79,13 @@ func decodeGetFollowingRequest(_ context.Context, r *http.Request) (interface{},
 }
 
 func decodeGetFollowersRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	if os.Getenv("DELINKCIOUS_MUTUAL_AUTH") != "false" {
-		token := r.Header["Delinkcious-Caller-Token"]
+	if os.Getenv("MUTUAL_AUTH") != "false" {
+		token := r.Header["DePostcious-Caller-Token"]
 		if len(token) == 0 || token[0] == "" {
 			return nil, errors.New("missing caller token")
 		}
 
-		if !auth_util.HasCaller("link-manager", token[0]) {
+		if !auth_util.HasCaller("Post-manager", token[0]) {
 			return nil, errors.New("unauthorized caller")
 		}
 	}
