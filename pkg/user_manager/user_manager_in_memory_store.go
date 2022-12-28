@@ -2,9 +2,10 @@ package user_manager
 
 import (
 	"errors"
-	om ""
 	"math/rand"
 	"strconv"
+
+	om "github.com/ani5msr/microservices-project/pkg/object_model"
 )
 
 type InMemoryUserStore struct {

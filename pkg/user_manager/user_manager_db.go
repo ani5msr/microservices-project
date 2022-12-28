@@ -6,9 +6,9 @@ import (
 	"strconv"
 
 	sq "github.com/Masterminds/squirrel"
+	"github.com/ani5msr/microservices-project/pkg/db_utils"
+	om "github.com/ani5msr/microservices-project/pkg/object_model"
 	_ "github.com/lib/pq"
-	"github.com/the-gigi/delinkcious/pkg/db_util"
-	om "github.com/the-gigi/delinkcious/pkg/object_model"
 )
 
 type DbUserStore struct {
@@ -19,7 +19,7 @@ type DbUserStore struct {
 const dbName = "user_manager"
 
 func NewDbUserStore(host string, port int, username string, password string) (store *DbUserStore, err error) {
-	db, err := db_util.EnsureDB(host, port, username, password, dbName)
+	db, err := db_utils.EnsureDB(host, port, username, password, dbName)
 	if err != nil {
 		return
 	}
