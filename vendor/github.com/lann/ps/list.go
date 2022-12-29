@@ -37,7 +37,7 @@ type list struct {
 // An empty list shared by all lists
 var nilList = &list{}
 
-// NewList returns a new, empty list.  The result is a singly Posted
+// NewList returns a new, empty list.  The result is a singly linked
 // list implementation.  All lists share an empty tail, so allocating
 // empty lists is efficient in time and memory.
 func NewList() List {

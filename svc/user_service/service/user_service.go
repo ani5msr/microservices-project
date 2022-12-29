@@ -5,15 +5,15 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/ani5msr/microservices-project/pkg/db_utils"
 	"github.com/gorilla/mux"
-	"github.com/the-gigi/delinkcious/pkg/db_util"
 
 	sgm "github.com/ani5msr/microservices-project/pkg/user_manager"
 	httptransport "github.com/go-kit/kit/transport/http"
 )
 
 func Run() {
-	dbHost, dbPort, err := db_util.GetDbEndpoint("user")
+	dbHost, dbPort, err := db_utils.GetDbEndpoint("user")
 	if err != nil {
 		log.Fatal(err)
 	}
