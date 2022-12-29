@@ -6,7 +6,7 @@ import (
 )
 
 // implement function to return ServiceMiddleware
-func newTracingMiddleware(tracer opentracing.Tracer) linkManagerMiddleware {
+func newTracingMiddleware(tracer opentracing.Tracer) postManagerMiddleware {
 	return func(next om.PostManager) om.PostManager {
 		return tracingMiddleware{next, tracer}
 	}
