@@ -7,5 +7,5 @@ import (
 type Event struct {
 	EventType om.PostManagerEventTypeEnum
 	Username  string
-	Link      *om.Link
+	Post      *om.Post
 }
