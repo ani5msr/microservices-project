@@ -15,10 +15,10 @@ func newMetricsMiddleware() postManagerMiddleware {
 		m := metricsMiddleware{next,
 			map[string]prometheus.Counter{},
 			map[string]prometheus.Summary{}}
-		methodNames := []string{"GetLinks", "AddLink", "UpdateLink", "DeleteLink"}
+		methodNames := []string{"GetPost", "AddPost", "UpdatePost", "DeletePost"}
 		for _, name := range methodNames {
-			m.requestCounter[name] = metrics.NewCounter("link", strings.ToLower(name)+"_count", "count # of requests")
-			m.requestLatency[name] = metrics.NewSummary("link", strings.ToLower(name)+"_summary", "request summary in milliseconds")
+			m.requestCounter[name] = metrics.NewCounter("post", strings.ToLower(name)+"_count", "count # of requests")
+			m.requestLatency[name] = metrics.NewSummary("post", strings.ToLower(name)+"_summary", "request summary in milliseconds")
 
 		}
 		return m

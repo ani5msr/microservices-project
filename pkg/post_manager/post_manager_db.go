@@ -74,7 +74,7 @@ func createSchema(db *sql.DB) (err error) {
 }
 
 func (s *DbPostStore) GetPost(request om.GetPostsRequest) (result om.GetPostsResult, err error) {
-	q := s.sb.Select("*").From("links")
+	q := s.sb.Select("*").From("posts")
 	if request.Tag != "" {
 		q = q.Join("tags ON post.id = tags.post_id")
 	}

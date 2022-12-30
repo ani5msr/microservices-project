@@ -28,7 +28,7 @@ type Post struct {
 	UpdatedAt   time.Time
 }
 
-type GetPostsRequest struct {
+type GetPostRequest struct {
 	UrlRegex         string
 	TitleRegex       string
 	DescriptionRegex string
@@ -37,7 +37,7 @@ type GetPostsRequest struct {
 	StartToken       string
 }
 
-type GetPostsResult struct {
+type GetPostResult struct {
 	Posts         []Post
 	NextPageToken string
 }
