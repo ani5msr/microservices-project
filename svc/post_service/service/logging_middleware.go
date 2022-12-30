@@ -19,10 +19,10 @@ type loggingMiddleware struct {
 	logger log.Logger
 }
 
-func (m loggingMiddleware) GetPost(request om.GetPostsRequest) (result om.GetPostsResult, err error) {
+func (m loggingMiddleware) GetPost(request om.GetPostRequest) (result om.GetPostResult, err error) {
 	defer func(begin time.Time) {
 		m.logger.Log(
-			"method", "GetLinks",
+			"method", "GetPost",
 			"request", request,
 			"result", result,
 			"duration", time.Since(begin),

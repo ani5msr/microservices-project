@@ -15,10 +15,10 @@ import (
 	jeagerconfig "github.com/uber/jaeger-client-go/config"
 
 	"github.com/ani5msr/microservices-project/pkg/db_utils"
-	"github.com/ani5msr/microservices-project/pkg/link_manager_events"
 	"github.com/ani5msr/microservices-project/pkg/log"
 	om "github.com/ani5msr/microservices-project/pkg/object_model"
 	lm "github.com/ani5msr/microservices-project/pkg/post_manager"
+	"github.com/ani5msr/microservices-project/pkg/post_manager_events"
 	sgm "github.com/ani5msr/microservices-project/pkg/social_graph_client"
 )
 
@@ -61,7 +61,7 @@ func createTracer(service string) (opentracing.Tracer, io.Closer) {
 }
 
 func Run() {
-	dbHost, dbPort, err := db_util.GetDbEndpoint("post")
+	dbHost, dbPort, err := db_utils.GetDbEndpoint("post")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -104,7 +104,7 @@ func Run() {
 	natsPort := os.Getenv("NATS_CLUSTER_SERVICE_PORT")
 
 	natsUrl := ""
-	var eventSink om.LinkManagerEvents
+	var eventSink om.PostManagerEvents
 	if natsHostname != "" {
 		natsUrl = natsHostname + ":" + natsPort
 		eventSink, err = post_manager_events.NewEventSender(natsUrl)
@@ -138,8 +138,8 @@ func Run() {
 	svc = newTracingMiddleware(tracer)(svc)
 
 	getPostsHandler := httptransport.NewServer(
-		makeGetPostsEndpoint(svc),
-		decodeGetPostsRequest,
+		makeGetPostEndpoint(svc),
+		decodeGetPostRequest,
 		encodeResponse,
 	)
 
