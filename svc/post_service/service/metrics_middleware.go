@@ -37,7 +37,7 @@ func (m metricsMiddleware) recordMetrics(name string, begin time.Time) {
 	m.requestLatency[name].Observe(durationMilliseconds)
 }
 
-func (m metricsMiddleware) GetPost(request om.GetPostsRequest) (result om.GetPostsResult, err error) {
+func (m metricsMiddleware) GetPost(request om.GetPostRequest) (result om.GetPostResult, err error) {
 	defer func(begin time.Time) {
 		m.recordMetrics("GetPost", begin)
 	}(time.Now())

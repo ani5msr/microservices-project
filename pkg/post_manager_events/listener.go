@@ -16,7 +16,7 @@ func Listen(url string, sink om.PostManagerEvents) (err error) {
 			{
 				sink.OnPostAdded(e.Username, e.Post)
 			}
-		case om.LinkUpdated:
+		case om.PostUpdated:
 			{
 				sink.OnPostUpdated(e.Username, e.Post)
 			}

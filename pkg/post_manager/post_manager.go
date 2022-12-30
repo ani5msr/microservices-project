@@ -19,7 +19,7 @@ type PostManager struct {
 	maxPostsPerUser    int64
 }
 
-func (m *PostManager) GetPost(request om.GetPostsRequest) (result om.GetPostsResult, err error) {
+func (m *PostManager) GetPost(request om.GetPostRequest) (result om.GetPostResult, err error) {
 	if request.Username == "" {
 		err = errors.New("user name can't be empty")
 		return
@@ -34,7 +34,7 @@ func (m *PostManager) GetPost(request om.GetPostsRequest) (result om.GetPostsRes
 
 // Very wasteful way to count Posts
 func (m *PostManager) getPostCount(username string) (PostCount int64, err error) {
-	req := om.GetPostsRequest{Username: username}
+	req := om.GetPostRequest{Username: username}
 	res, err := m.GetPost(req)
 	if err != nil {
 		return
@@ -43,7 +43,7 @@ func (m *PostManager) getPostCount(username string) (PostCount int64, err error)
 	PostCount += int64(len(res.Posts))
 
 	for res.NextPageToken != "" {
-		req = om.GetPostsRequest{Username: username, StartToken: res.NextPageToken}
+		req = om.GetPostRequest{Username: username, StartToken: res.NextPageToken}
 		res, err = m.GetPost(req)
 		if err != nil {
 			return

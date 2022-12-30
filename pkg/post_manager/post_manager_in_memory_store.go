@@ -21,7 +21,7 @@ func newInMemoryPostStore() PostStore {
 	return &inMemoryPostStore{map[string]UserPosts{}}
 }
 
-func (m *inMemoryPostStore) GetPost(request om.GetPostsRequest) (result om.GetPostsResult, err error) {
+func (m *inMemoryPostStore) GetPost(request om.GetPostRequest) (result om.GetPostResult, err error) {
 	result.Posts = []om.Post{}
 	userPosts := m.posts[request.Username]
 	if userPosts == nil {

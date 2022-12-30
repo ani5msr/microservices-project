@@ -1,7 +1,7 @@
 package object_model
 
 type PostManager interface {
-	GetPost(request GetPostsRequest) (GetPostsResult, error)
+	GetPost(request GetPostRequest) (GetPostResult, error)
 	AddPost(request AddPostRequest) error
 	UpdatePost(request UpdatePostRequest) error
 	DeletePost(username string, url string) error

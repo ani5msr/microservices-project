@@ -17,7 +17,7 @@ type tracingMiddleware struct {
 	tracer opentracing.Tracer
 }
 
-func (m tracingMiddleware) GetPost(request om.GetPostsRequest) (result om.GetPostsResult, err error) {
+func (m tracingMiddleware) GetPost(request om.GetPostRequest) (result om.GetPostResult, err error) {
 	defer func(span opentracing.Span) {
 		span.Finish()
 	}(m.tracer.StartSpan("GetLinks"))

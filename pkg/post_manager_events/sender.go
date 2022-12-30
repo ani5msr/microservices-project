@@ -1,8 +1,9 @@
 package post_manager_events
 
 import (
-	"github.com/nats-io/nats.go"
 	"log"
+
+	"github.com/nats-io/nats.go"
 
 	om "github.com/ani5msr/microservices-project/pkg/object_model"
 )
@@ -21,7 +22,7 @@ func (s *eventSender) OnPostAdded(username string, link *om.Post) {
 	}
 }
 
-func (s *eventSender) OnPostUpdated(username string, link *om.Link) {
+func (s *eventSender) OnPostUpdated(username string, link *om.Post) {
 	err := s.nats.Publish(subject, Event{om.PostUpdated, username, link})
 	if err != nil {
 		log.Fatal(err)
