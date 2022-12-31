@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	om "github.com/ani5msr/microservices-project/pkg/object_model"
+	"github.com/ani5msr/microservices-project/pkg/post_checker_events"
 )
 
 // Nuclio functions listen by default on port 8080 of their service IP
@@ -193,7 +194,7 @@ func NewPostManager(PostStore PostStore,
 
 	// Subscribe PostManager to Post checker events if nats is ocnfigured
 	if natsUrl != "" {
-		Post_checker_events.Listen(natsUrl, Post_manager)
+		post_checker_events.Listen(natsUrl, Post_manager)
 	}
 
 	return Post_manager, nil
