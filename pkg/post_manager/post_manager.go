@@ -178,7 +178,7 @@ func NewPostManager(PostStore PostStore,
 	eventSink om.PostManagerEvents,
 	maxPostsPerUser int64) (om.PostManager, error) {
 	if PostStore == nil {
-		return nil, errors.New("Post store")
+		return nil, errors.New("post store")
 	}
 
 	if eventSink != nil && socialGraphManager == nil {

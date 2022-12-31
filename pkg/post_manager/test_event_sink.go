@@ -17,14 +17,14 @@ func (s *testEventsSink) OnPostAdded(username string, post *om.Post) {
 	s.addPostEvents[username] = append(s.addPostEvents[username], post)
 }
 
-func (s *testEventsSink) OnLinkUpdated(username string, link *om.Post) {
+func (s *testEventsSink) OnPostUpdated(username string, link *om.Post) {
 	if s.updatePostEvents[username] == nil {
 		s.updatePostEvents[username] = []*om.Post{}
 	}
 	s.updatePostEvents[username] = append(s.updatePostEvents[username], link)
 }
 
-func (s *testEventsSink) OnLinkDeleted(username string, url string) {
+func (s *testEventsSink) OnPostDeleted(username string, url string) {
 	if s.deletedPostEvents[username] == nil {
 		s.deletedPostEvents[username] = []string{}
 	}

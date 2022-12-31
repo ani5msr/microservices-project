@@ -17,7 +17,7 @@ type inMemoryPostStore struct {
 	posts map[string]UserPosts
 }
 
-func newInMemoryPostStore() PostStore {
+func NewInMemoryPostStore() PostStore {
 	return &inMemoryPostStore{map[string]UserPosts{}}
 }
 
