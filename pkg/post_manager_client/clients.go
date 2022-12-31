@@ -1,17 +1,16 @@
-package link_manager_client
+package post_manager_client
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-)
 
-import (
-	"context"
 	om "github.com/ani5msr/microservices-project/pkg/object_model"
+
 	httptransport "github.com/go-kit/kit/transport/http"
 )
 
