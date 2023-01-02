@@ -1,6 +1,6 @@
 module github.com/ani5msr/microservices-project/svc/social_graph_service
 
-go 1.17
+go 1.18
 
 require (
 	github.com/ani5msr/microservices-project v0.0.0-20230101141303-1fe552979608 // indirect
