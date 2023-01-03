@@ -3,21 +3,19 @@ jobs:
   build:
     docker:
     - image: cimg/go:1.18
-    - image: circleci/postgres:9.6-alpine
+    - image: cimg/postgres:9.6-alpine
       environment: # environment variables for primary container
         POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
         DOCKERHUB_USERNAME: animizia
         DOCKERHUB_PASSWORD: asilaydying99@
     steps:
     - checkout
     - run:
-        name: Update certificates
-        command: apt-get --allow-releaseinfo-change update && apt upgrade -y
-    - run:
         name: Get all dependencies
         command: |
-          go mod download all
+          go get -v ./...
+          go get -u github.com/onsi/ginkgo/ginkgo
+          go get -u github.com/onsi/gomega/...
     - run:
         name: Test everything
         command: ginkgo -r -race -failFast -progress
@@ -29,4 +27,8 @@ jobs:
         command: |
           chmod +x ./build.sh
           ./build.sh
+
+
+
+
 
