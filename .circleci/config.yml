@@ -9,7 +9,6 @@ jobs:
         POSTGRES_PASSWORD: postgres
         DOCKERHUB_USERNAME: animizia
         DOCKERHUB_PASSWORD: asilaydying99@
-    working_directory: go/src/github.com/ani5msr/microservices-project
     steps:
     - checkout
     - run:
