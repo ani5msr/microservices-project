@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
     - image: cimg/go:1.18
-    - image: cimgo/postgres:9.6-alpine
+    - image: circleci/postgres:9.6-alpine
       environment: # environment variables for primary container
         POSTGRES_USER: postgres
     working_directory: /go/src/github.com/ani5msr/microservices-project
