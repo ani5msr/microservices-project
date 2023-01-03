@@ -4,8 +4,6 @@ set -eo pipefail
 
 IMAGE_PREFIX='ani5msr'
 STABLE_TAG='0.2'
-DOCKERHUB_USERNAME='animizia'
-DOCKERHUB_PASSWORD='asilaydying99@'
 TAG="${STABLE_TAG}.${CIRCLE_BUILD_NUM}"
 ROOT_DIR="$(pwd)"
 SVC_DIR="${ROOT_DIR}/svc"
