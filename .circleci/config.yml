@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
     - image: cimg/go:1.18
-    - image: cimg/postgres:15.1.0
+    - image: circleci/postgres:9.6-alpine
       environment: # environment variables for primary container
         POSTGRES_USER: postgres
         DOCKERHUB_USERNAME: animizia
