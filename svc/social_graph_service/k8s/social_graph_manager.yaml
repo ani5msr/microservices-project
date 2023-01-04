@@ -19,9 +19,25 @@ spec:
     spec:
       containers:
       - name: social-graph-manager
-        image: ani5msr/social-graph:0.2
+        image: ani5msr/microservices-project:0.5
+        imagePullPolicy: Always
         ports:
         - containerPort: 9090
+        envFrom:
+        - configMapRef:
+            name: social-graph-manager-config
+        volumeMounts:
+        - name: mutual-auth
+          mountPath: /etc/microservices-project
+          readOnly: true
+        resources:
+          requests:
+            memory: 512Mi
+            cpu: "1"           
+      volumes:
+      - name: mutual-auth
+        secret:
+          secretName: social-graph-mutual-auth
 ---
 apiVersion: v1
 kind: Service
