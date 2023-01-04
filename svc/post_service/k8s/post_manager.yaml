@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: post-manager
+automountServiceAccountToken: false
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post-manager
+  labels:
+    svc: post
+    app: manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      svc: post
+      app: manager
+  template:
+    metadata:
+      labels:
+        svc: post
+        app: manager
+    spec:
+      serviceAccount: post-manager
+      containers:
+      - name: post-manager
+        image: ani5msr/microservices-project:0.6
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: post-manager-config
+        volumeMounts:
+        - name: mutual-auth
+          mountPath: /etc/microservices-project
+          readOnly: true
+      volumes:
+      - name: mutual-auth
+        secret:
+          secretName: post-mutual-auth
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: post-manager
+spec:
+  ports:
+  - port:  8080
+  selector:
+    svc: post
+    app: manager

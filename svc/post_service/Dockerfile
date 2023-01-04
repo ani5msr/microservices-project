@@ -1,4 +1,4 @@
-FROM golang:1.16 AS builder
+FROM golang:1.18 AS builder
 
 WORKDIR /build
 
@@ -13,10 +13,10 @@ RUN apt-get --allow-releaseinfo-change update && apt upgrade -y
 RUN go mod download all
 
 # Build image as a truly static Go binary
-RUN CGO_ENABLED=0 GOOS=linux go build -o /post_service -a -tags netgo -ldflags '-s -w' .
+RUN CGO_ENABLED=0 GOOS=linux go build -o /link_service -a -tags netgo -ldflags '-s -w' .
 
 FROM scratch
-LABEL key="ani5msr"
-COPY --from=builder /post_service /app/post_service
+MAINTAINER Gigi Sayfan <the.gigi@gmail.com>
+COPY --from=builder /link_service /app/link_service
 EXPOSE 8080
-ENTRYPOINT ["/app/post_service"]
+ENTRYPOINT ["/app/link_service"]

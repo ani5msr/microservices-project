@@ -3,4 +3,5 @@ go 1.18
 use (
 	./
 	./svc/social_graph_service
+    ./svc/post_service
 )
