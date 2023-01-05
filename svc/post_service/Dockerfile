@@ -16,6 +16,6 @@ RUN go mod download all
 RUN CGO_ENABLED=0 GOOS=linux go build -o /post_service -a -tags netgo -ldflags '-s -w' .
 
 FROM scratch
-COPY --from=builder /link_service /app/postdservice
+COPY --from=builder /post_service /app/post_service
 EXPOSE 8080
-ENTRYPOINT ["/app/link_service"]
+ENTRYPOINT ["/app/postservice"]
