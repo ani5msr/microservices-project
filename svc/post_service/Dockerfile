@@ -13,10 +13,9 @@ RUN apt-get --allow-releaseinfo-change update && apt upgrade -y
 RUN go mod download all
 
 # Build image as a truly static Go binary
-RUN CGO_ENABLED=0 GOOS=linux go build -o /link_service -a -tags netgo -ldflags '-s -w' .
+RUN CGO_ENABLED=0 GOOS=linux go build -o /post_service -a -tags netgo -ldflags '-s -w' .
 
 FROM scratch
-MAINTAINER Gigi Sayfan <the.gigi@gmail.com>
-COPY --from=builder /link_service /app/link_service
+COPY --from=builder /link_service /app/postdservice
 EXPOSE 8080
 ENTRYPOINT ["/app/link_service"]
