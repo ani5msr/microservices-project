@@ -18,4 +18,4 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /post_service -a -tags netgo -ldflags '
 FROM scratch
 COPY --from=builder /post_service /app/post_service
 EXPOSE 8080
-ENTRYPOINT ["/app/postservice"]
+ENTRYPOINT ["/app/post_service"]
