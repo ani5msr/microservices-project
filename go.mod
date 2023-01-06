@@ -39,10 +39,12 @@ require (
 
 require (
 	github.com/go-kit/log v0.2.1
+	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/onsi/ginkgo v1.16.5
 	github.com/onsi/gomega v1.13.0
 	github.com/opentracing/opentracing-go v1.2.0
+	github.com/pelletier/go-toml v1.9.5
 	github.com/stretchr/testify v1.8.0 // indirect
 	golang.org/x/crypto v0.1.0 // indirect
 	golang.org/x/sys v0.3.0 // indirect
