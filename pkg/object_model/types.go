@@ -71,12 +71,12 @@ type PostManagerEvent struct {
 	Timestamp time.Time
 }
 
-type GetNewsRequest struct {
+type GetFeedRequest struct {
 	Username   string
 	StartToken string
 }
 
-type GetNewsResult struct {
+type GetFeedResult struct {
 	Events    []*PostManagerEvent
 	NextToken string
 }

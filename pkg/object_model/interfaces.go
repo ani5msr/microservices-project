@@ -25,8 +25,8 @@ type SocialGraphManager interface {
 	//KickFollower(followed string, follower string) error
 }
 
-type NewsManager interface {
-	GetNews(request GetNewsRequest) (GetNewsResult, error)
+type FeedManager interface {
+	GetFeed(request GetFeedRequest) (GetFeedResult, error)
 }
 
 type PostManagerEvents interface {
