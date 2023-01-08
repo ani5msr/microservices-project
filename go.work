@@ -5,4 +5,5 @@ use (
 	./svc/social_graph_service
     ./svc/post_service
     ./svc/user_service
+    ./svc/feed_service
 )

@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: feed-manager
+automountServiceAccountToken: false
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feed-manager
+  labels:
+    svc: feed
+    app: manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      svc: feed
+      app: manager
+  template:
+    metadata:
+      labels:
+        svc: feed
+        app: manager
+    spec:
+      serviceAccount: feed-manager
+      containers:
+      - name: feed-manager
+        image: ani5msr/feed:0.3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 6060
+        envFrom:
+        - configMapRef:
+            name: feed-manager-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: feed-manager
+spec:
+  ports:
+  - port:  6060
+  selector:
+    svc: feed
+    app: manager
