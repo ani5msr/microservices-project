@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: feed-manager-redis
+spec:
+  serviceName: feed-manager-redis
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+      svc: feed-manager
+  template:
+    metadata:
+      labels:
+        app: redis
+        svc: feed-manager
+    spec:
+      containers:
+      - name: redis-primary
+        image: redis:5.0.3-alpine
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 6379
+          name: redis
+        volumeMounts:
+        - name: feed-manager-redis
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: feed-manager-redis
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: feed-manager-redis
+  labels:
+    app: redis
+    svc: feed-manager
+spec:
+  selector:
+    app: redis
+    svc: feed-manager
+  clusterIP: None
+  ports:
+  - port: 6379
+    name: redis
