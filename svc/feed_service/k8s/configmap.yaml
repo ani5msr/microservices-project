@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: feed-manager-config
+  namespace: default
+data:
+  PORT: "6060"
+  FEED_MANAGER_REDIS_SERVICE_HOST: "feed-manager-redis-0.feed-manager-redis.default.svc.cluster.local"
+  FEED_MANAGER_REDIS_SERVICE_PORT: "6379"
+
+
+
