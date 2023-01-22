@@ -19,4 +19,4 @@ Post method to unfollow a user
 
 ### Feed service uses NATS pub sub notification for notifying whenever a user has added or updated his post
 ## NATS
-
+NATS using publisher subscriber method to notify about event changes
