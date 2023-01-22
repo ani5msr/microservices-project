@@ -14,3 +14,9 @@ fetches the following of provided username
 Post method to follow a user
 ### /unfollow
 Post method to unfollow a user
+
+# Feed Service
+
+### Feed service uses NATS pub sub notification for notifying whenever a user has added or updated his post
+## NATS
+
