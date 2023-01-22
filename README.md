@@ -10,3 +10,7 @@
 fetches the followers for the provided username
 ### /following/{username}
 fetches the following of provided username
+### /follow
+Post method to follow a user
+### /unfollow
+Post method to unfollow a user
